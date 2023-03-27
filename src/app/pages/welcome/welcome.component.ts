@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Observable, Subject} from "rxjs";
 
 @Component({
   selector: 'app-welcome',
@@ -14,30 +15,30 @@ export class WelcomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  onChooseFile() {
-    console.log(this.decodeUtf8('Trang bá» Accio cho Bá» phÃ©p thuáº­t cá»§a báº¡n'))
-  }
-
-  changeFile(event: Event) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const text = e?.target?.result;
-      // @ts-ignore
-      const lines = text.split('\n');
-
-      for (let line = 0; line < lines.length; line++) {
-        console.log(lines[line])
-      }
-    };
+  changeFileEN(event: Event) {
     // @ts-ignore
-    reader.readAsBinaryString(event?.target?.files[0]);
+    const file = event?.target?.files[0];
+    this.readFile(file).subscribe((output) => {
+      console.log(output);
+    })
   }
 
-  encodeUtf8(s: any) {
-    return unescape(encodeURIComponent(s));
+  readFile(file: File): Observable<string> {
+    const sub = new Subject<string>();
+    const reader = new FileReader();
+    reader.onload = () => {
+      const content: string = reader.result as string;
+      sub.next(content);
+      sub.complete();
+    };
+    reader.readAsText(file);
+    return sub.asObservable();
   }
 
-  decodeUtf8(s: any) {
-    return decodeURIComponent(escape(s));
+  changeFileVN(event: Event) {
+
+  }
+
+  onSave() {
   }
 }

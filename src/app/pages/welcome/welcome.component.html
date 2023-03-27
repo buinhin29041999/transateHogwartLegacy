@@ -1,10 +1,13 @@
 <div class="row">
   <div class="col-sm-12 form-group">
-    File to translate
-    <input type="file" nz-input placeholder="File..." (change)="changeFile($event)"/>
-    <input id="ss"/>
+    File EN
+    <input type="file" nz-input placeholder="File..." (change)="changeFileEN($event)"/>
+  </div>
+  <div class="col-sm-12 form-group">
+    File VN
+    <input type="file" nz-input placeholder="File..." (change)="changeFileVN($event)"/>
   </div>
   <div class="col-sm-12">
-    <button nz-button nzType="dashed" (click)="onChooseFile()">Read</button>
+    <button nz-button nzType="dashed" (click)="onSave()">Save & Next</button>
   </div>
 </div>
