@@ -1,6 +1,10 @@
-File to translate
-<input nz-input placeholder="File..." type="file" [(ngModel)]="sourceFile"/>
-<button nz-button nzType="dashed" (click)="onChooseFile()">Choose File</button>
 <div class="row">
-
+  <div class="col-sm-12 form-group">
+    File to translate
+    <input type="file" nz-input placeholder="File..." (change)="changeFile($event)"/>
+    <input id="ss"/>
+  </div>
+  <div class="col-sm-12">
+    <button nz-button nzType="dashed" (click)="onChooseFile()">Read</button>
+  </div>
 </div>
