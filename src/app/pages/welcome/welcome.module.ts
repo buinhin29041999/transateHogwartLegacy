@@ -7,10 +7,14 @@ import {NzInputModule} from "ng-zorro-antd/input";
 import {FormsModule} from "@angular/forms";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzUploadModule} from "ng-zorro-antd/upload";
+import {NzSpinModule} from "ng-zorro-antd/spin";
+import {NgIf} from "@angular/common";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzCardModule} from "ng-zorro-antd/card";
 
 
 @NgModule({
-  imports: [WelcomeRoutingModule, NzInputModule, FormsModule, NzButtonModule, NzUploadModule],
+  imports: [WelcomeRoutingModule, NzInputModule, FormsModule, NzButtonModule, NzUploadModule, NzSpinModule, NgIf, NzIconModule, NzCardModule],
   declarations: [WelcomeComponent],
   exports: [WelcomeComponent]
 })

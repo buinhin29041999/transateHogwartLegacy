@@ -1,13 +1,30 @@
-<div class="row">
-  <div class="col-sm-12 form-group">
-    File EN
-    <input type="file" nz-input placeholder="File..." (change)="changeFileEN($event)"/>
-  </div>
-  <div class="col-sm-12 form-group">
-    File VN
-    <input type="file" nz-input placeholder="File..." (change)="changeFileVN($event)"/>
-  </div>
-  <div class="col-sm-12">
-    <button nz-button nzType="dashed" (click)="onSave()">Save & Next</button>
-  </div>
+<div style="background: #ECECEC; width: 100%; height: 100%">
+  <nz-card nzTitle="Source">
+    <div class="row">
+      <div class="col-sm-12 form-group mb-5">
+        <div class="col-sm-1" style="padding-top: 10px">File EN</div>
+        <div class="col-sm-6">
+          <input type="file" nz-input placeholder="File..." (change)="changeFile($event, 'EN', isLoadingEN)"/>
+        </div>
+        <div class="col-sm-2" style="padding-top: 10px"><nz-spin nzSimple *ngIf="isLoadingVN"></nz-spin></div>
+      </div>
+      <div class="col-sm-12 form-group mb-5">
+        <div class="col-sm-1" style="padding-top: 10px">File VN</div>
+        <div class="col-sm-6">
+          <input type="file" nz-input placeholder="File..." (change)="changeFile($event, 'VN', isLoadingVN)"/>
+        </div>
+        <div class="col-sm-2" style="padding-top: 10px"><nz-spin nzSimple *ngIf="isLoadingEN"></nz-spin></div>
+      </div>
+      <div class="col-sm-6 text-center">
+        <button nz-button nzType="dashed" (click)="onSubmit()">Check & Submit <span *ngIf="valid2File" style="color: green" nz-icon nzType="check" nzTheme="outline"></span></button>
+      </div>
+    </div>
+  </nz-card>
+  <nz-card *ngIf="valid2File" nzTitle="Trans">
+    <div class="row">
+      <div class="col-sm-12">
+        {{currentLine}}
+      </div>
+    </div>
+  </nz-card>
 </div>
