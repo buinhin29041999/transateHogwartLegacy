@@ -14,7 +14,9 @@ export class WelcomeComponent implements OnInit {
   isLoadingEN: boolean = false;
 
   valid2File: boolean = false;
-  currentLine: number = 1;
+  currentLine: number = 0;
+  textAfterTrans: string = '';
+  numberLine: number = 0;
 
   constructor(private toast: ToastrService) {
   }
@@ -24,10 +26,10 @@ export class WelcomeComponent implements OnInit {
 
   changeFile(event: Event, source: string | 'EN' | 'VN', loading: boolean) {
     this.valid2File = false;
-    if (source=== "EN"){
+    if (source === "EN") {
       this.lstDataEN = [];
     }
-    if (source=== "VN"){
+    if (source === "VN") {
       this.lstDataVN = [];
     }
     loading = true;
@@ -61,8 +63,36 @@ export class WelcomeComponent implements OnInit {
     if (this.lstDataEN?.length && this.lstDataVN?.length && this.lstDataEN?.length === this.lstDataVN?.length) {
       this.valid2File = true;
       this.toast.success('OK~');
+      this.upText();
     } else {
       this.toast.error('Độ dài file khác nhau!');
     }
+  }
+
+  onSave() {
+    this.toast.info(this.textAfterTrans)
+  }
+
+  goTo() {
+    this.currentLine = this.numberLine;
+    this.upText();
+  }
+
+  prev() {
+    if (this.currentLine > 0) {
+      this.currentLine -= 1;
+      this.upText();
+    }
+  }
+
+  next() {
+    if (this.currentLine < this.lstDataEN?.length) {
+      this.currentLine += 1;
+      this.upText();
+    }
+  }
+
+  upText() {
+    this.textAfterTrans = this.lstDataVN[this.currentLine];
   }
 }

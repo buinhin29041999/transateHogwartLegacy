@@ -11,10 +11,11 @@ import {NzSpinModule} from "ng-zorro-antd/spin";
 import {NgIf} from "@angular/common";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzCardModule} from "ng-zorro-antd/card";
+import {NzTypographyModule} from "ng-zorro-antd/typography";
 
 
 @NgModule({
-  imports: [WelcomeRoutingModule, NzInputModule, FormsModule, NzButtonModule, NzUploadModule, NzSpinModule, NgIf, NzIconModule, NzCardModule],
+  imports: [WelcomeRoutingModule, NzInputModule, FormsModule, NzButtonModule, NzUploadModule, NzSpinModule, NgIf, NzIconModule, NzCardModule, NzTypographyModule],
   declarations: [WelcomeComponent],
   exports: [WelcomeComponent]
 })

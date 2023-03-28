@@ -20,10 +20,26 @@
       </div>
     </div>
   </nz-card>
-  <nz-card *ngIf="valid2File" nzTitle="Trans">
+  <hr>
+  <nz-card *ngIf="valid2File" [nzTitle]="'Trans:  ' + (currentLine + 1) + ' / ' + this.lstDataEN?.length">
+    <div class="row form-group">
+      <div class="col-sm-2">
+        <input type="number" nz-input [(ngModel)]="numberLine"/>
+      </div>
+      <div class="col-sm-1"><button nz-button nzType="default" (click)="goTo()">Go to</button></div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-1"><button nz-button nzType="default" nzShape="circle" (click)="prev()" title="Previous"><span nz-icon nzType="left" nzTheme="outline"></span></button></div>
+      <div class="col-sm-1"><button nz-button nzType="default" nzShape="circle" (click)="next()" title="Next"><span nz-icon nzType="right" nzTheme="outline"></span></button></div>
+    </div>
     <div class="row">
-      <div class="col-sm-12">
-        {{currentLine}}
+      <div class="col-sm-12 mb-5">
+        <h5>{{lstDataEN[currentLine]}}</h5>
+      </div>
+      <div class="col-sm-12 form-group">
+        <textarea nz-input tabindex="0" [nzAutosize]="{ minRows: 3, maxRows: 5 }" [(ngModel)]="textAfterTrans"></textarea>
+      </div>
+      <div class="col-sm-6 text-center">
+        <button nz-button nzType="primary" (click)="onSave()" type="submit" tabIndex="0">Save & Next</button>
       </div>
     </div>
   </nz-card>
