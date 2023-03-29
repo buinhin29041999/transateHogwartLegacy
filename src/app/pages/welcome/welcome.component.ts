@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {finalize, Observable, Subject} from "rxjs";
 import {ToastrService} from "ngx-toastr";
+import {saveAs} from 'file-saver';
 
 @Component({
   selector: 'app-welcome',
@@ -17,11 +18,14 @@ export class WelcomeComponent implements OnInit {
   currentLine: number = 0;
   textAfterTrans: string = '';
   numberLine: number = 0;
+  fileNameEN: string = '';
 
   constructor(private toast: ToastrService) {
   }
 
   ngOnInit() {
+    // todo lưu vị trí đang dịch thep từng file vào local storage
+    // todo lưu lại tên file khi thay đổi file EN
   }
 
   changeFile(event: Event, source: string | 'EN' | 'VN', loading: boolean) {
@@ -70,7 +74,10 @@ export class WelcomeComponent implements OnInit {
   }
 
   onSave() {
-    this.toast.info(this.textAfterTrans)
+    this.toast.success(this.textAfterTrans)
+    this.lstDataVN[this.currentLine] = this.textAfterTrans;
+    var blob = new Blob([this.lstDataVN.join('\n')], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, this.fileNameEN + ".txt");
   }
 
   goTo() {
