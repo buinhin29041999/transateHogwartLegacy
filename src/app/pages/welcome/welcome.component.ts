@@ -19,8 +19,10 @@ export class WelcomeComponent implements OnInit {
   textAfterTrans: string = '';
   numberLine: number = 0;
   fileNameEN: string = '';
+  fileNameVN: string = '';
 
   lstLineNotSave: any[] = [];
+  lastPositionTrans: string | number = 0;
   constructor(private toast: ToastrService) {
   }
 
@@ -45,8 +47,10 @@ export class WelcomeComponent implements OnInit {
         if (source === 'EN') {
           this.lstDataEN = output.split('\r\n');
           this.fileNameEN = file?.name;
+          this.currentLine = Number.parseInt(localStorage.getItem(this.fileNameEN) || '0', 0);
         } else {
           this.lstDataVN = output.split('\r\n');
+          this.fileNameVN = file?.name;
         }
       })
   }
@@ -108,6 +112,8 @@ export class WelcomeComponent implements OnInit {
 
   onDownload() {
     const blob = new Blob([this.lstDataVN.join('\n')], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, this.fileNameEN);
+    saveAs(blob, this.fileNameVN);
+    this.lstLineNotSave = [];
+    localStorage.setItem(this.fileNameEN, String(this.currentLine));
   }
 }
