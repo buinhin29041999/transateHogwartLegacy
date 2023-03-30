@@ -76,8 +76,6 @@ export class WelcomeComponent implements OnInit {
   onSave() {
     this.toast.success(this.textAfterTrans)
     this.lstDataVN[this.currentLine] = this.textAfterTrans;
-    var blob = new Blob([this.lstDataVN.join('\n')], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, this.fileNameEN + ".txt");
   }
 
   goTo() {
@@ -95,11 +93,17 @@ export class WelcomeComponent implements OnInit {
   next() {
     if (this.currentLine < this.lstDataEN?.length) {
       this.currentLine += 1;
+      console.log(this.lstDataEN[this.currentLine])
       this.upText();
     }
   }
 
   upText() {
     this.textAfterTrans = this.lstDataVN[this.currentLine];
+  }
+
+  onDownload() {
+    const blob = new Blob([this.lstDataVN.join('\n')], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, this.fileNameEN + ".txt");
   }
 }
