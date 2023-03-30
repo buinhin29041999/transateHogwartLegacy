@@ -111,7 +111,11 @@ export class WelcomeComponent implements OnInit {
   }
 
   onDownload() {
-    const blob = new Blob([this.lstDataVN.join('\n')], {type: "text/plain;charset=utf-8"});
+    this.lstDataVN = this.lstDataVN.map((e: string) => {
+      return e?.trim().replace('\n', '')
+    });
+    const result = this.lstDataVN.join('\n');
+    const blob = new Blob([result], {type: "text/plain;charset=utf-8"});
     saveAs(blob, this.fileNameVN);
     this.lstLineNotSave = [];
     localStorage.setItem(this.fileNameEN, String(this.currentLine));
