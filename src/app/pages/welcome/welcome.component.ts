@@ -20,12 +20,12 @@ export class WelcomeComponent implements OnInit {
   numberLine: number = 0;
   fileNameEN: string = '';
 
+  lstLineNotSave: any[] = [];
   constructor(private toast: ToastrService) {
   }
 
   ngOnInit() {
-    // todo lưu vị trí đang dịch thep từng file vào local storage
-    // todo lưu lại tên file khi thay đổi file EN
+    // todo lưu vị trí đang dịch theo từng file vào local storage
   }
 
   changeFile(event: Event, source: string | 'EN' | 'VN', loading: boolean) {
@@ -76,6 +76,10 @@ export class WelcomeComponent implements OnInit {
   onSave() {
     this.toast.success(this.textAfterTrans)
     this.lstDataVN[this.currentLine] = this.textAfterTrans;
+    if (!this.lstLineNotSave?.includes(this.currentLine)) {
+      this.lstLineNotSave.push(this.currentLine);
+    }
+    this.next();
   }
 
   goTo() {
@@ -93,7 +97,6 @@ export class WelcomeComponent implements OnInit {
   next() {
     if (this.currentLine < this.lstDataEN?.length) {
       this.currentLine += 1;
-      console.log(this.lstDataEN[this.currentLine])
       this.upText();
     }
   }
