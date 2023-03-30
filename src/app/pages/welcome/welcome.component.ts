@@ -49,7 +49,11 @@ export class WelcomeComponent implements OnInit {
           this.fileNameEN = file?.name;
           this.currentLine = Number.parseInt(localStorage.getItem(this.fileNameEN) || '0', 0);
         } else {
-          this.lstDataVN = output.split('\r\n');
+          if (output?.length > 1) {
+            this.lstDataVN = output.split('\r\n');
+          } {
+            this.lstDataVN = output.split('\n');
+          }
           this.fileNameVN = file?.name;
         }
       })
