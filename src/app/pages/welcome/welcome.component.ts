@@ -38,12 +38,13 @@ export class WelcomeComponent implements OnInit {
     }
     loading = true;
     // @ts-ignore
-    const file = event?.target?.files[0];
+    const file =  event?.target?.files[0];
     this.readFile(file)
       .pipe(finalize(() => loading = false))
       .subscribe((output) => {
         if (source === 'EN') {
           this.lstDataEN = output.split('\r\n');
+          this.fileNameEN = file?.name;
         } else {
           this.lstDataVN = output.split('\r\n');
         }
@@ -107,6 +108,6 @@ export class WelcomeComponent implements OnInit {
 
   onDownload() {
     const blob = new Blob([this.lstDataVN.join('\n')], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, this.fileNameEN + ".txt");
+    saveAs(blob, this.fileNameEN);
   }
 }

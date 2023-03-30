@@ -59,11 +59,11 @@
                   [(ngModel)]="textAfterTrans"></textarea>
       </div>
       <div class="col-sm-6 text-center">
-        <button nz-button nzType="primary" (click)="onSave()" type="submit">Lưu bản dịch</button>
+        <button nz-button nzType="primary" (click)="onSave()" type="submit"><span nz-icon nzType="save" nzTheme="outline"></span>Save</button>
       </div>
       <div class="col-sm-6 text-center">
         <button nz-button nzType="primary" (click)="onDownload()" type="submit"><span nz-icon nzType="download"
-                                                                                      nzTheme="outline"></span>Save
+                                                                                      nzTheme="outline"></span>Download
         </button>
         <nz-badge [nzCount]="lstLineNotSave?.length" style="padding-top: 20px;">
           <a class="head-example"></a>
